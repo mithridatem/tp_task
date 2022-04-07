@@ -1,0 +1,35 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: Roboto;
+}
+input{
+    height: 40px;
+    width: 200px;
+    border-radius: 0.7em;
+    border: solid black 1px;
+    font-size: 1.2em;
+    text-align: center;
+}
+input[type=submit]{
+    width: 100px;
+    margin-left: 50px;
+    background-color: rgb(59, 148, 227);
+    color: whitesmoke;
+    font-size: 1.2em;
+}
+input[type=submit]:hover{
+    background-color: whitesmoke;
+    color: rgb(59, 148, 227);
+}
+#connexion, #createUser, h3{
+    margin-left: 2em;
+}
+span{
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-left: 2em;
+}
+h3{
+    margin-top: 20px;
+}
