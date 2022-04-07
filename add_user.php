@@ -4,6 +4,7 @@
     ---------------------------------------*/
     include './utils/connectBdd.php';
     include './model/model_user.php';
+    include './view/view_menu.php';
     include './view/view_create_user.php';
     /*---------------------------------------
                     VARIABLES
@@ -25,31 +26,57 @@
             $prenom = $_POST['first_name_user'];
             $login = $_POST['login_user'];
             $mdp = $_POST['mdp_user'];
-            //option pour hash
-            $options = [
+            //récupération d'un utilisateur dans $user
+            $user = getUserByMail($bdd, $login);
+            //test si l'utilisateur existe
+            if($user!= null){
+                $msg = 'Le compte existe déja';
+                //refresh de la page
+                echo '<script>
+                    refresh(1500, "./add_user.php");
+                </script>';
+            }
+            //sinon on l'ajoute en BDD 
+            else{
+                //option pour hash
+                $options = [
                 'cost' => 8,
-            ];
-            //hash
-            $mdp = password_hash($mdp, PASSWORD_BCRYPT, $options);
-            //ajout en bdd
-            adduser($bdd, $nom, $prenom, $login,$mdp);
-            //message
-            $msg = "$login a été ajouté en BDD";
+                ];
+                //hash
+                $mdp = password_hash($mdp, PASSWORD_BCRYPT, $options);
+                //ajout en bdd
+                adduser($bdd, $nom, $prenom, $login,$mdp);
+                //message
+                $msg = "$nom $prenom a été ajouté en BDD";
+                //refresh de la page
+                echo '<script>
+                    refresh(1500, "./add_user.php");
+                </script>';
+            }
         }
         //sinon vide
         else{
+            //message
             $msg = 'Veuillez remplir tous les champs du formulaire';
+            //refresh de la page
+            echo '<script>
+                refresh(1500, "./add_user.php");
+            </script>';
         }
     }
     //sinon (bouton submit non cliqué)
     else{
-        $msg = 'Saisir vos informations de création d\'utilisateur';
+        //message
+        $msg = 'Saisir les informations de création d\'utilisateur';
     }
     /*---------------------------------------
                 GESTION DES ERREURS
     ---------------------------------------*/
     //affichage des messages d'erreur en JS
     echo '<script>
-        setMessage("'.$msg.'");  
+        //affiche le message d\'erreur 
+        setMessage("'.$msg.'");
+        //affiche la page sélectionnée dans le menu
+        urlStyle();  
     </script>'
 ?>

@@ -21,7 +21,7 @@
     //function qui retourne un utilisateur à partir de son login
     function getUserByMail($bdd, $login){
         try{
-            $req = $bdd->prepare('SELECT mdp_user FROM utilisateur 
+            $req = $bdd->prepare('SELECT * FROM utilisateur 
             WHERE login_user=:login_user');
             $req->execute(array(
                 'login_user' =>$login,

@@ -5,15 +5,15 @@ body{
 }
 input{
     height: 40px;
-    width: 200px;
+    width: 300px;
     border-radius: 0.7em;
     border: solid black 1px;
-    font-size: 1.2em;
+    font-size: 1em;
     text-align: center;
 }
 input[type=submit]{
-    width: 100px;
-    margin-left: 50px;
+    width: 150px;
+    margin-left: 75px;
     background-color: rgb(59, 148, 227);
     color: whitesmoke;
     font-size: 1.2em;
@@ -32,4 +32,23 @@ span{
 }
 h3{
     margin-top: 20px;
+}
+/*Menu*/
+ul{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: rgb(59, 148, 227);
+    height: 4em;
+}
+li{
+    list-style-type: none;
+    justify-content: center;
+    flex: auto;
+    padding-left: 10%;
+}
+li>a{
+    color: rgb(216, 201, 201);
+    font-size: 1.4em;
+    text-decoration: none;
 }
